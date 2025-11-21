@@ -40,37 +40,62 @@ For more information, check out the [paper](https://www.biorxiv.org/content/10.1
 
 ## Installation
 
-To set up a cell2sentence environment, first pull the repository locally:
-```bash
-git clone https://github.com/vandijklab/cell2sentence.git
-```
+### Option 1: Install from PyPI (Recommended for users)
 
-Navigate a terminal into the root of the repository. Next, create an Anaconda environment using `python3` using [anaconda](https://docs.anaconda.com/anaconda/install/) with:
-```bash
-conda create -n cell2sentence python=3.8
-```
-
-Next, activate the environment:
-```bash
-conda activate cell2sentence
-```
-
-Finally, run the setup:
-```bash
-make install
-```
-
-This will install the latest development environment of cell2sentence, along with other pacakge dependendies. You can also install cell2sentence itself using `pip`:
 ```bash
 pip install cell2sentence==1.1.0
 ```
 
-The C2S package will allow usage of the core functionalities of C2S, including inference using existing C2S models and finetuning your own C2S models on your own datasets.
+### Option 2: Development Installation (Recommended for contributors)
+
+If you want to modify the code or run the tutorials, clone the repository and install in editable mode:
+
+```bash
+# Clone the repository
+git clone https://github.com/vandijklab/cell2sentence.git
+cd cell2sentence
+```
+
+#### Using uv (Recommended - Fast and Modern)
+
+If you have [uv](https://github.com/astral-sh/uv) installed:
+
+```bash
+# Install Python 3.8 if needed
+uv python install 3.8
+
+# Install the package in editable mode with all dependencies
+uv pip install -e .
+```
+
+#### Using conda + pip (Traditional)
+
+```bash
+# Create and activate a conda environment
+conda create -n cell2sentence python=3.8
+conda activate cell2sentence
+
+# Install the package in editable mode
+pip install -e .
+```
+
+#### Using Make (Legacy)
+
+```bash
+# This will create a conda environment and install dependencies
+make install
+```
+
+**Note:** The package uses a `src/` layout, so installation (either with `-e .` or via pip) is required for Python to find the `cell2sentence` module.
+
+### Optional: Flash Attention for Faster Inference
 
 If you would like to speed up inference, you can optionally install flash-attention, which speeds up inference times particularly for long sequences (e.g. for generating cells with more than a few hundred genes):
+
 ```bash
 pip install flash-attn --no-build-isolation
 ```
+
 Detailed instructions for installing flash-attention can be found in the official [installation instructions](https://github.com/Dao-AILab/flash-attention?tab=readme-ov-file#installation-and-features). To enable flash attention 2, see the example in tutorial notebook 5 (cell generation).
 
 ## Tutorials

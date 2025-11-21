@@ -1,6 +1,7 @@
 # artifacts
 .DS_Store
 cache
+tmp/
 
 # project specific excludes
 data
