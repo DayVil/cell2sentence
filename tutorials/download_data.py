@@ -2,6 +2,10 @@ import requests
 import os
 import gdown
 
+SAVE_PATH = "tmp/saved/"
+SAVE_NAME = "saved_data.h5ad"
+DATA_PATH = os.path.join(SAVE_PATH, SAVE_NAME)
+
 def download_data(url, name):
     output_dir = "tmp"
     os.makedirs(output_dir, exist_ok=True)
@@ -23,7 +27,7 @@ def download_data(url, name):
     
     return output_path
 
-def save_data(adata, name):
+def save_data(adata):
     """
     Save AnnData object to the tmp/saved directory.
     
@@ -39,9 +43,9 @@ def save_data(adata, name):
     str
         The full path where the data was saved
     """
-    output_dir = os.path.join("tmp", "saved")
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, name)
+    output_name = SAVE_NAME
+    os.makedirs(SAVE_PATH, exist_ok=True)
+    output_path = os.path.join(SAVE_PATH, output_name)
     
     adata.write_h5ad(output_path)
     
